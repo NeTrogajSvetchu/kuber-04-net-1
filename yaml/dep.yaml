@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-net
+  namespace: kub-4
+spec:
+  selector:
+    matchLabels:
+      app: dep
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: dep
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.25.4
+        ports:
+        - containerPort: 80
+      - name: multitool
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 8080
+        env:
+          - name: HTTP_PORT
+            value: "1180"
