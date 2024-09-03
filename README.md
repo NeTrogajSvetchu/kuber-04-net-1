@@ -1,5 +1,8 @@
 # kuber-04-net-1
 
+
+### Задание 1
+
 kubectl create namespace kub-4
 
 Создал [Deployment](yaml/dep.yaml), [Service](yaml/svc-1.yaml) и [Pod](yaml/pod.yaml)
@@ -12,11 +15,33 @@ kubectl exec -n kub-4 multitool -- curl kub-4-svc:*
 
 ![alt text](png/2.png)
 
+Долго тупил на ошибку с курлом
 kubectl exec -n kub-4 -it multitool -- /bin/bash
 
-![alt text](image.png)
+![alt text](png/3.png)
+
+помогло отключение фаервола на локал хосте
+
+swapoff -a
+
+firewall-cmd --state
+
+systemctl stop firewalld
+
+systemctl disable firewalld
 
 
+Проверил доступ с мультитула на остальные поды
+
+![alt text](png/4.png)
+
+### Задание 2.
+
+Зоздал [SVC](yaml/nod-svc.yaml) NodePort
+
+Проверку прошел успешно
+
+![alt text](png/5.png)
 
 
 
